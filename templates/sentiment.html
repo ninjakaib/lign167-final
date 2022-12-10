@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    body {
+        align-items: center;
+        justify-content: center;
+        background-color: #eeeeee;
+        font-family: sans-serif;
+    }
+    h3 {text-align: center;}
+    tr:nth-child(even) {background-color: #D6EEEE;}
+    html * {
+        margin-left: 5px;
+        line-height: 1.625;
+        color: #2020131;
+        font-family: Nunito, sans-serif;
+      }
+</style>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Stock Sentiment</title>
+    </head>
+
+    <body>
+        <a href="/">
+            <button>Home</button>
+        </a>
+        <h3>Current Avg. Sentiment: {{sentiment}}</h3>
+        <div id="chart" class="chart"></div>
+        <div id="chart2" class="chart2"></div>
+        <div id="chart3" class="chart3"></div>
+        <br><br>
+        {{ table|safe }}
+
+    </body>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graph_stock = {{graphJSON_stock | safe}};
+    Plotly.plot('chart',graph_stock,{}); 
+    var graph_hourly = {{graphJSON_hourly | safe}};
+    Plotly.newPlot('chart2',graph_hourly,{}); 
+    var graph_daily = {{graphJSON_daily | safe}};  
+    Plotly.newPlot('chart3',graph_daily,{});    
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    body {
+    align-items: center;
+    justify-content: center;
+    height: 150vh;
+    background-color: #eeeeee;
+    }
+    h1 {text-align: center;}
+    h3 {text-align: center;}
+    #chart {margin: auto;}
+    html * {
+        
+        color: #2020131;
+        font-family: Nunito, sans-serif;
+      }
+</style>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Stock Sentiment</title>
+    </head>
+
+    <body>
+
+        <h1 style="color:#333333">Stock Market Sentiment Analysis</h1>
+
+        <h3 style="color:#333333">Enter a Stock Ticker Symbol to See the Price and Sentiment Data of the Stock</h3>
+        <br>
+        <form action="sentiment" method="POST" align="center">
+                
+            <b style="color:#333333">Search for Stock: </b>    
+            <input id="text_field" name="ticker" type="text" required>
+            <input id="submit_button" type="Submit" class="push_button blue">
+            
+        </form>
+
+        <br>
+        <center><h3>{{graphTitle}}</h3></center>
+        <div id='chart' class='chart'”></div>
+
+        <br><br>
+        <p>Sentiment is scored between -1 (negative), 0 (neutral), 1 (positive). Sentiment scores are calculated on individual news headlines pulled from finviz then averaged to represent the overall sentiment.</p>
+
+    </body>
+
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+  var graphs = {{graphJSON | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
+
+</html>
