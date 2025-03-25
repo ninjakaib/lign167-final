@@ -1,0 +1,8 @@
+flask
+beautifulsoup4
+pandas
+flair
+yfinance
+plotly
+alpha_vantage
+torch
